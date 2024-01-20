@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+</head>
+<body>
+   <div id="container">
+        <div id="navBar">
+            <div id="navBarHeader">
+
+            </div>
+            <div id="personalInfo">
+                <img src="images/default-image.png" alt="User Image">
+                <p>George Towers</p>
+            </div>
+            <div id="general-extras">
+                <p>GENERAL</p>
+                <div id="general">
+                    <a href="#" id="dashboard">Dashboard</a>
+                    <a href="categories.html" id="categories">Categories</a>
+                    <a href="expenses.html" id="expenses">Expenses</a>
+                </div>
+                <p>EXTRAS</p>
+                <div id="extras">
+                    <a href="#" id="settings">Settings</a>
+                    <a href="#" id="help">Help</a>
+                </div>
+            </div>
+        </div>
+        <div id="mainSection">
+            <div id="mainSectionHeader">
+                <h1>Expense Tracking App</h1>
+            </div>
+            <div id="moneySection">
+                <div id="balance">
+                    <h3 id="balance-number">$8500,00</h3>
+                    <p>Current Balance</p>
+                </div>
+                <div id="income">
+                    <h3 id="income-number">$1760,00</h3>
+                    <p>Total Income</p>
+                </div>
+                <div id="expenses">
+                    <h3 id="expenses-number">$2150,00</h3>
+                    <p>Total Expenses</p>
+                </div>
+            </div>
+            <div id="chartSection">
+                <div id="chart">
+                    <div id="categoriesDisplay">
+                        <h3>Category Summary</h3>
+                    </div>
+                    <div id="chartDisplay">
+
+                    </div>
+                </div>
+                <div id="operations">
+                    <button id="deposit">Deposit</button>                    
+                    <button id="withdraw">Withdraw</button>
+                    <button id="addExpense">Add Expense</button>
+                </div>
+            </div>
+        </div>
+        <div id="latestTransactions">
+            <div id="transactionsHeader">
+                <h3>Latest Expenses & Transactions</h3>
+            </div>
+        </div>
+   </div>
+</body>
+</html>
