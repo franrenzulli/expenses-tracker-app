@@ -69,7 +69,7 @@ body{
     transition: 0.4s;
 }
 
-#categories{
+#expenses{
     width: 150px;
     height: 30px;
     display: flex;
@@ -80,7 +80,7 @@ body{
     color: white;
 }
 
-#expenses, #settings, #help, #dashboard{
+#categories, #settings, #help, #dashboard{
     color: #474747;
 }
 
@@ -123,40 +123,40 @@ body{
     
 }
 
-#addCategory{
+#addTransaction{
         background-color: rgba(20,174,92,0.5);
         border: 3px solid rgba(20,174,92,0.7);
 }
 
-#deleteCategory{
+#deleteTransaction{
     background-color: rgba(255,58,31,0.5);
     border: 3px solid rgba(255,58,31,0.7);
 }
 
-#editCategory{
+#editTransaction{
     background-color: rgba(13,153,255,0.5);
     border: 3px solid rgba(13,153,255,0.7);
 }
 
-#addCategory:hover{
+#addTransaction:hover{
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(20,184,92,1);
 }
 
-#deleteCategory:hover{
+#deleteTransaction:hover{
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(255,58,31,1);
 }
 
-#editCategory:hover{
+#editTransaction:hover{
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(13,153,255,1);
 }
 
-#categoriesList{
+#transactionList{
     width: 100%;
     height: 85vh;
     display: flex; 
