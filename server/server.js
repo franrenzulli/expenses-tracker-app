@@ -14,14 +14,9 @@ const { MongoClient } = require('mongodb');
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
 
-// Sessions
-//const session = require("express-session")
-
-/*app.use(session({
-    secret: "dasds",
-    resave: false,
-    saveUnitialized: false,
-}))*/
+// Controller functions
+const createClient = require("./helpers/createClient.js")
+const addToDatabase = require("./helpers/addToDatabase.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')));
@@ -64,7 +59,6 @@ app.post("/login", async(req,res)=>{
 })
 
 // Route for the successful login
-
 app.get("/dashboard", (req,res)=>{
 //    console.log(req.session.userId)
     res.sendFile(path.join(__dirname, "../client/dashboard/dashboard.html"))
@@ -73,15 +67,6 @@ app.get("/dashboard", (req,res)=>{
 
 // Create client to MongoDB database
 const uri = process.env.MONGODB_URI
-
-const createClient = (uri)=>{
-
-    if(!uri){
-        throw new Error("Environment variable MONDODB_URI is not configured")
-    }
-    return new MongoClient(uri)
-} 
-
 const client = createClient(uri)
 
 // Connect to the database and check if a username is found or not, returns true if the username is available to use (not found)
@@ -103,33 +88,6 @@ const checkUsernameAvailability = async(usernameAsked)=>{
         }else{
             return true;
         }
-    }catch(err){
-        console.error("Error connecting to the database")
-    }finally{
-        await client.close()
-        console.log("Connection closed")
-    }
-}
-
-// Insert a document into "users" collection
-const addToDatabase = async(username, password, firstName, lastName)=>{
-
-    try{
-        const client = createClient(uri)
-        await client.connect()
-        console.log("Connected to the database")
-
-        const database = client.db("expense-tracker")
-        const collection = database.collection("users")
-
-        collection.insertOne({
-            "username":username,
-            "password":password,
-            "firstName":firstName,
-            "lastName":lastName
-        })
-
-        console.log("User added to the collection")
     }catch(err){
         console.error("Error connecting to the database")
     }finally{
