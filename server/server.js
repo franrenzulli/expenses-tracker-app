@@ -26,6 +26,13 @@ app.use(express.static(path.join(__dirname, '../client')));
 // Allow environment variables
 require("dotenv").config()
 
+// JWT
+const jwt = require("jsonwebtoken");
+
+// Encryption
+const bcrypt = require("bcrypt")
+
+// Port
 const PORT = process.env.PORT ?? 3000
 
 // Serve the main page
@@ -60,17 +67,30 @@ app.post("/login", async(req,res)=>{
     const {username, password} = req.body
     console.log("Login Attempt:", username, password)
     if(await loginTrial(username, password)){
-        console.log("SUCCESSFUL LOGIN")
-        res.redirect("/dashboard")
-//      req.session.userId = username; 
+
+        const token = jwt.sign({ username: username }, process.env.JWT_SECRET, {
+            expiresIn: "1h", // Token will expire in 1 hour (adjust as needed)
+        });
+        res.json({ token });
+        console.log("Successful Login Trial")
     }
 })
 
 // Route for the successful login
 app.get("/dashboard", (req,res)=>{
-//    console.log(req.session.userId)
     res.sendFile(path.join(__dirname, "../client/dashboard/dashboard.html"))
-    console.log("Dashboard route accessed");
+    console.log("Dashboard route accessed")
+})
+
+// Handle the POST request sent by the login page
+app.post("/dashboard", (req,res)=>{
+    const {token} = req.body
+    if(token){
+        console.log("Token received", token)
+        res.status(200).json({"ok":true})
+    }else{
+        console.log("Token not found")
+    }
 })
 
 // Start listening on the available port.
