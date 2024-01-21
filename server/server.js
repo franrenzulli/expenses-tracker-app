@@ -17,6 +17,8 @@ app.use(bodyParser.json())
 // Controller functions
 const createClient = require("./helpers/createClient.js")
 const addToDatabase = require("./helpers/addToDatabase.js")
+const checkUsernameAvailability = require("./helpers/checkUsernameAvailability.js")
+const loginTrial = require("./helpers/loginTrial.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')));
@@ -26,11 +28,17 @@ require("dotenv").config()
 
 const PORT = process.env.PORT ?? 3000
 
+// Serve the main page
+app.get("/", (req,res)=>{
+    res.sendFile(path.join(__dirname, "../client/main/main.html"))
+})
+
 // Serve the SignUp page
 app.get("/signup", (req,res)=>{
     res.sendFile(path.join(__dirname, "../client/signup/signup.html"))
 })
 
+// Serve the Login page
 app.get("/login", (req,res)=>{
     res.sendFile(path.join(__dirname, "../client/login/login.html"))
 })
@@ -64,63 +72,6 @@ app.get("/dashboard", (req,res)=>{
     res.sendFile(path.join(__dirname, "../client/dashboard/dashboard.html"))
     console.log("Dashboard route accessed");
 })
-
-// Create client to MongoDB database
-const uri = process.env.MONGODB_URI
-const client = createClient(uri)
-
-// Connect to the database and check if a username is found or not, returns true if the username is available to use (not found)
-const checkUsernameAvailability = async(usernameAsked)=>{
-
-    try{
-        const client = createClient(uri)
-        await client.connect()
-        console.log("Connected to the database")
-
-        const database = client.db("expense-tracker")
-        const collection = database.collection("users")
-
-        const cursor = await collection.find({"username":usernameAsked})
-        const result = await cursor.toArray()
-
-        if(result.length > 0){
-            return false;
-        }else{
-            return true;
-        }
-    }catch(err){
-        console.error("Error connecting to the database")
-    }finally{
-        await client.close()
-        console.log("Connection closed")
-    }
-}
-
-// Check username-password matches, returns true if there's a match.
-const loginTrial = async(username, password)=>{
-
-    try{
-        const client = createClient(uri)
-        await client.connect()
-        console.log("Connected to the database")
-        const database = client.db("expense-tracker")
-        const collection = database.collection("users")
-
-        const cursor = await collection.find({"username":username, "password":password})
-        const result = await cursor.toArray()
-
-        if(result.length > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }catch(err){
-        console.error(err)
-    }finally{
-        await client.close()
-        console.log("Connection closed")
-    }
-}
 
 // Start listening on the available port.
 app.listen(PORT, ()=>{
