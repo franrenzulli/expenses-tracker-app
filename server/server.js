@@ -91,9 +91,7 @@ app.post("/getInfo", async(req,res)=>{
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
             req.user = decoded
             const username = req.user.username
-            const userData = await fetchUserData(username)
-            res.json({userData})
-            console.log(userData)
+            res.send(username)
         }catch(error){
             console.error(err)
         }
@@ -101,12 +99,11 @@ app.post("/getInfo", async(req,res)=>{
 
 })
 
-app.get("/dashboard", (req, res)=>{
-    const userDataString = req.query.userData;
-    console.log("STRING", userDataString)
-    const userData = JSON.parse(userDataString)
-    console.log("JSON:", userData)
-
+app.get("/dashboard", async(req, res)=>{
+    const username = req.query.username;
+    console.log("USERNAME PASSED:", username)
+    const userData = await fetchUserData(username)
+    console.log(userData)
     res.status(200).render(path.join(__dirname, "../client/views/dashboard.ejs"), {userData})
 })
 
