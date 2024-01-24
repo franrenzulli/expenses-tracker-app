@@ -39,12 +39,9 @@ btnLogIn.addEventListener("click", async () => {
 
             if(getInfoResponse.ok){
                 console.log("Data extracted")
-                const { userData } = await getInfoResponse.json();
-               console.log(userData)
-               var userDataString = JSON.stringify(userData);
-
-                var userDataString = encodeURIComponent(JSON.stringify(userData));
-                window.location.href = "/dashboard?userData=" + userDataString;      
+                const username = await getInfoResponse.text();
+                console.log(username)
+                window.location.href = "/dashboard?username=" + username;      
 
             }else{
                 console.log("Token couldnt be verified")
