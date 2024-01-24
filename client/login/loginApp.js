@@ -25,24 +25,29 @@ btnLogIn.addEventListener("click", async () => {
             // Extract the token from the response
             const { token } = await loginResponse.json();
             console.log("Successful login");
+            localStorage.setItem("token", token);
 
-            // Send the token to the /dashboard endpoint
-            const dashboardResponse = await fetch("http://localhost:3000/dashboard", {
+            const getInfoResponse = await fetch("http://localhost:3000/getInfo", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    token,
-                }),
-            });
+                    token:token
+                })
+            })
 
-            if (dashboardResponse.ok) {
-                console.log("Successfully accessed the dashboard");
-                // Redirect to the dashboard page
-                window.location.href = "/dashboard";
-            } else {
-                console.log("Failed to access the dashboard");
+            if(getInfoResponse.ok){
+                console.log("Data extracted")
+                const { userData } = await getInfoResponse.json();
+               console.log(userData)
+               var userDataString = JSON.stringify(userData);
+
+                var userDataString = encodeURIComponent(JSON.stringify(userData));
+                window.location.href = "/dashboard?userData=" + userDataString;      
+
+            }else{
+                console.log("Token couldnt be verified")
             }
         } else {
             console.log("Login failed");
