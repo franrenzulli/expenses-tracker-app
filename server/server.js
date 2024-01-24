@@ -19,15 +19,21 @@ const createClient = require("./helpers/createClient.js")
 const addToDatabase = require("./helpers/addToDatabase.js")
 const checkUsernameAvailability = require("./helpers/checkUsernameAvailability.js")
 const loginTrial = require("./helpers/loginTrial.js")
+const fetchUserData = require("./helpers/fetchUserData.js")
+
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Allow environment variables
-require("dotenv").config()
+require('dotenv').config()
 
 // JWT
 const jwt = require("jsonwebtoken");
+
+// EJS
+const ejs = require("ejs")
+app.set("view engine", "ejs")
 
 // Encryption
 const bcrypt = require("bcrypt")
@@ -67,7 +73,7 @@ app.post("/login", async(req,res)=>{
     const {username, password} = req.body
     console.log("Login Attempt:", username, password)
     if(await loginTrial(username, password)){
-
+        
         const token = jwt.sign({ username: username }, process.env.JWT_SECRET, {
             expiresIn: "1h", // Token will expire in 1 hour (adjust as needed)
         });
@@ -76,21 +82,32 @@ app.post("/login", async(req,res)=>{
     }
 })
 
-// Route for the successful login
-app.get("/dashboard", (req,res)=>{
-    res.sendFile(path.join(__dirname, "../client/dashboard/dashboard.html"))
-    console.log("Dashboard route accessed")
+app.post("/getInfo", async(req,res)=>{
+    const {token} = req.body
+    console.log("received token:", token)
+
+    if(token){
+        try{
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            req.user = decoded
+            const username = req.user.username
+            const userData = await fetchUserData(username)
+            res.json({userData})
+            console.log(userData)
+        }catch(error){
+            console.error(err)
+        }
+    }
+
 })
 
-// Handle the POST request sent by the login page
-app.post("/dashboard", (req,res)=>{
-    const {token} = req.body
-    if(token){
-        console.log("Token received", token)
-        res.status(200).json({"ok":true})
-    }else{
-        console.log("Token not found")
-    }
+app.get("/dashboard", (req, res)=>{
+    const userDataString = req.query.userData;
+    console.log("STRING", userDataString)
+    const userData = JSON.parse(userDataString)
+    console.log("JSON:", userData)
+
+    res.status(200).render(path.join(__dirname, "../client/views/dashboard.ejs"), {userData})
 })
 
 // Start listening on the available port.
