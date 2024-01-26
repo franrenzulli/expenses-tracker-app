@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>Spendia: Expense Tracking Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="/views/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -17,15 +17,15 @@
 
             </div>
             <div id="personalInfo">
-                <img src="images/default-image.png" alt="User Image">
+                <img src="/views/images/default-image.png" alt="User Image">
                 <p><%= userData.firstName %> <%= userData.lastName %></p>
             </div>
             <div id="general-extras">
                 <p>GENERAL</p>
                 <div id="general">
                     <a href="#" id="dashboard">Dashboard</a>
-                    <a href="categories.html" id="categories">Categories</a>
-                    <a href="expenses.html" id="expenses">Expenses</a>
+                    <button id="categories">Categories</button>
+                    <button id="expenses" id="expenses">Expenses</button>
                 </div>
                 <p>EXTRAS</p>
                 <div id="extras">
@@ -74,6 +74,7 @@
             </div>
         </div>
    </div>
-   <script src="dashboard.js"></script>
+   <p id="username"><%= userData.username %></p>
+   <script src="/views/dashboard.js"></script>
 </body>
 </html>

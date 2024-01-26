@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>Spendia: Expense Tracking Dashboard</title>
+    <link rel="stylesheet" href="/views/expenses.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+   <div id="container">
+        <div id="navBar">
+            <div id="navBarHeader">
+
+            </div>
+            <div id="personalInfo">
+                <img src="/views/images/default-image.png" alt="User Image">
+                <p><%= userData.firstName %> <%= userData.lastName %></p>
+            </div>
+            <div id="general-extras">
+                <p>GENERAL</p>
+                <div id="general">
+                    <button id="dashboard">Dashboard</button>
+                    <button id="categories">Categories</button>
+                    <a href="#" id="expenses">Expenses</a>
+                </div>
+                <p>EXTRAS</p>
+                <div id="extras">
+                    <a href="#" id="settings">Settings</a>
+                    <a href="#" id="help">Help</a>
+                </div>
+            </div>
+        </div>
+        <div id="mainSection">
+            <div id="mainSectionHeader">
+                <h1>Manage transactions</h1>
+            </div>
+            <div id="buttons">
+                <button id="addTransaction">Add transaction</button>
+                <button id="deleteTransaction">Delete transaction</button>
+                <button id="editTransaction">Edit transaction</button>
+            </div>
+            <div id="transactionList">
+                <ul id="list"></ul>    
+            </div>
+        </div>
+   </div>
+   <p id="username"><%= userData.username %></p>
+   <script src="/views/expenses.js"></script>
+</body>
+</html>
