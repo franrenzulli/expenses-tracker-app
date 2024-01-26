@@ -23,7 +23,7 @@ const fetchUserData = require("./helpers/fetchUserData.js")
 
 
 // Allows to serve static files 
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client')))
 
 // Allow environment variables
 require('dotenv').config()
@@ -100,14 +100,28 @@ app.post("/getInfo", async(req,res)=>{
 })
 
 app.get("/dashboard", async(req, res)=>{
-    const username = req.query.username;
+    const username = req.query.username
     console.log("USERNAME PASSED:", username)
     const userData = await fetchUserData(username)
     console.log(userData)
     res.status(200).render(path.join(__dirname, "../client/views/dashboard.ejs"), {userData})
 })
 
+app.get("/categories", async(req,res)=>{
+    const username = req.query.username
+    console.log(username)
+    const userData = await fetchUserData(username)
+    res.status(200).render(path.join(__dirname, "../client/views/categories.ejs"), {userData})
+})
+
+app.get("/expenses", async(req, res)=>{
+    const username = req.query.username
+    console.log(username)
+    const userData = await fetchUserData(username)
+    res.status(200).render(path.join(__dirname, "../client/views/expenses.ejs"), {userData})
+})
+
 // Start listening on the available port.
 app.listen(PORT, ()=>{
-    console.log(`server listening on port ${PORT}`)
+    console.log(`Server listening on port ${PORT}`)
 })
