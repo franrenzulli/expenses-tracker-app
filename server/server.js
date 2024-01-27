@@ -20,6 +20,7 @@ const addToDatabase = require("./helpers/addToDatabase.js")
 const checkUsernameAvailability = require("./helpers/checkUsernameAvailability.js")
 const loginTrial = require("./helpers/loginTrial.js")
 const fetchUserData = require("./helpers/fetchUserData.js")
+const saveChanges = require("./helpers/saveChanges.js")
 
 
 // Allows to serve static files 
@@ -103,22 +104,31 @@ app.get("/dashboard", async(req, res)=>{
     const username = req.query.username
     console.log("USERNAME PASSED:", username)
     const userData = await fetchUserData(username)
-    console.log(userData)
     res.status(200).render(path.join(__dirname, "../client/views/dashboard.ejs"), {userData})
 })
 
 app.get("/categories", async(req,res)=>{
     const username = req.query.username
-    console.log(username)
     const userData = await fetchUserData(username)
     res.status(200).render(path.join(__dirname, "../client/views/categories.ejs"), {userData})
 })
 
 app.get("/expenses", async(req, res)=>{
     const username = req.query.username
-    console.log(username)
     const userData = await fetchUserData(username)
     res.status(200).render(path.join(__dirname, "../client/views/expenses.ejs"), {userData})
+})
+
+app.get("/settings", async(req,res)=>{
+    const username = req.query.username
+    const userData = await fetchUserData(username)
+    res.status(200).render(path.join(__dirname, "../client/views/settings.ejs"), {userData})
+})
+
+app.post("/saveChanges", async(req,res)=>{
+    const {usernameInput, passwordInput, firstNameInput, lastNameInput, urlInput, username} = req.body
+    saveChanges(usernameInput, passwordInput, firstNameInput, lastNameInput, urlInput, username)
+    res.status(200).send({ok:true})
 })
 
 // Start listening on the available port.
