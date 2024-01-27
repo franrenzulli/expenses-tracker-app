@@ -17,7 +17,7 @@
 
             </div>
             <div id="personalInfo">
-                <img src="/views/images/default-image.png" alt="User Image">
+                <img src=<%= userData.profilePic %> alt="User Image">
                 <p><%= userData.firstName %> <%= userData.lastName %></p>
             </div>
             <div id="general-extras">
@@ -29,8 +29,8 @@
                 </div>
                 <p>EXTRAS</p>
                 <div id="extras">
-                    <a href="#" id="settings">Settings</a>
-                    <a href="#" id="help">Help</a>
+                    <button id="settings">Settings</button>
+                    <button id="help">Help</button>
                 </div>
             </div>
         </div>
@@ -39,16 +39,16 @@
                 <h1>Expense Tracking App</h1>
             </div>
             <div id="moneySection">
-                <div id="balance">
-                    <h3 id="balance-number">$8500,00</h3>
+                <div id="balanceDiv">
+                    <h3 id="balance-number">$<%= userData.balance %></h3>
                     <p>Current Balance</p>
                 </div>
-                <div id="income">
-                    <h3 id="income-number">$1760,00</h3>
+                <div id="incomeDiv">
+                    <h3 id="income-number">$<%= userData.income %></h3>
                     <p>Total Income</p>
                 </div>
-                <div id="expenses">
-                    <h3 id="expenses-number">$2150,00</h3>
+                <div id="expensesDiv">
+                    <h3 id="expenses-number">$<%= userData.expenses %></h3>
                     <p>Total Expenses</p>
                 </div>
             </div>

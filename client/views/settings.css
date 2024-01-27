@@ -70,18 +70,20 @@ body{
     transition: 0.4s;
 }
 
-#expenses{
+#settings{
     width: 150px;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(62, 139, 255); 
+    border: 0;
     border-radius: 10px;
+    font-weight: 600;
     color: white;
 }
 
-#categories, #settings, #help, #dashboard{
+#categories, #expenses, #help, #dashboard{
     background-color: #FCFCFC;
     border: 0;
     outline: 0;
@@ -114,63 +116,110 @@ body{
     font-size: 14px;
 }
 
-#buttons{
-    padding-left: 20px;
+#content{
     width: 100%;
-    height: 5vh;
+    height: 90vh;
     display: flex;
+    flex-direction: row;
+}
+
+input{
+    width: 20vw;
+    height: 5vh;
+    border: 0px;
+    border-bottom: 2px solid #474747;
+    text-indent: 10px;
+}
+
+input:focus{
+    outline: 0px;
+    border-bottom: 2px solid rgba(13,153,255,0.7);
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+#names, #passwordAndUsername{
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 }
 
-#buttons button{
-    margin-left: 20px;
-    width: 200px;
-    height: 100%;
+#saveChanges{
+    margin-top: 40px;
+    width: 85%;
+    height: 7vh;
+    background-color: rgba(13,153,255,0.7);
+    border: 2px solid rgba(13,153,255,0.9);
     border-radius: 10px;
-    font-size: 18px;
     font-weight: 600;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
     color: white;
-    
 }
 
-#addTransaction{
-        background-color: rgba(20,174,92,0.5);
-        border: 3px solid rgba(20,174,92,0.7);
-}
-
-#deleteTransaction{
-    background-color: rgba(255,58,31,0.5);
-    border: 3px solid rgba(255,58,31,0.7);
-}
-
-#editTransaction{
-    background-color: rgba(13,153,255,0.5);
-    border: 3px solid rgba(13,153,255,0.7);
-}
-
-#addTransaction:hover{
+#saveChanges:hover{
     cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(20,184,92,1);
+    transition: 0.3s;
+    background-color: rgba(13,153,255,0.9);
 }
 
-#deleteTransaction:hover{
+#firstHalf{
+    width: 70%;
+}
+
+#secondHalf{
+    width: 30%;
+}
+
+#upload{
+    margin-top: 20px;
+    background-color: #FCFCFC;
+    border: 0;
+    color: rgba(13,153,255,0.9);
+}
+
+#upload:hover{
     cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(255,58,31,1);
 }
 
-#editTransaction:hover{
-    cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(13,153,255,1);
+#firstHalf, #secondHalf{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#transactionList{
-    width: 100%;
-    height: 85vh;
-    display: flex; 
-    flex-wrap: wrap;
+.inputs{
+    display: flex;
+    flex-direction: column;
+}
+
+#showcaseImage{
+    border-radius: 99%;
+    width: 250px;
+    height: 250px;
+}
+
+#url{
+    margin-top: 20px;
+    width: 10vw;
+    font-size: 10px;
+    text-align: center;
+}
+
+#url:focus{
+    outline: 0px;
+    border-bottom: 2px solid rgba(13,153,255,0.7);
+    transition: 0.3s;
+}
+
+.error-message{
+    margin:0px;
+    font-size: 10px;
+    color: red;
 }
 
 /* Responsive Design & Media Queries */

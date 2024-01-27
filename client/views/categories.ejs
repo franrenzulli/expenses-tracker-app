@@ -16,7 +16,7 @@
 
             </div>
             <div id="personalInfo">
-                <img src="/views/images/default-image.png" alt="User Image">
+                <img src=<%= userData.profilePic %> alt="User Image">
                 <p><%= userData.firstName %> <%= userData.lastName %></p>
             </div>
             <div id="general-extras">
@@ -28,8 +28,8 @@
                 </div>
                 <p>EXTRAS</p>
                 <div id="extras">
-                    <a href="#" id="settings">Settings</a>
-                    <a href="#" id="help">Help</a>
+                    <button id="settings">Settings</button>
+                    <button id="help">Help</button>
                 </div>
             </div>
         </div>

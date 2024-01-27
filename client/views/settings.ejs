@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>Spendia: Expense Tracking Dashboard</title>
-    <link rel="stylesheet" href="/views/expenses.css">
+    <link rel="stylesheet" href="/views/settings.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
                 <div id="general">
                     <button id="dashboard">Dashboard</button>
                     <button id="categories">Categories</button>
-                    <a href="#" id="expenses">Expenses</a>
+                    <button id="expenses">Expenses</button>
                 </div>
                 <p>EXTRAS</p>
                 <div id="extras">
@@ -35,19 +35,35 @@
         </div>
         <div id="mainSection">
             <div id="mainSectionHeader">
-                <h1>Manage transactions</h1>
+                <h1>Edit profile</h1>
             </div>
-            <div id="buttons">
-                <button id="addTransaction">Add transaction</button>
-                <button id="deleteTransaction">Delete transaction</button>
-                <button id="editTransaction">Edit transaction</button>
-            </div>
-            <div id="transactionList">
-                <ul id="list"></ul>    
+            <div id="content">
+                <div id="firstHalf">
+                    <div id="names">
+                        <div><h3>First Name</h3><input id="changeFirstName" value=<%= userData.firstName %>></div>
+                        <div><h3>Last Name</h3><input id="changeLastName" value=<%= userData.lastName %>></div>
+                    </div>
+                    <div id="passwordAndUsername">
+                        <div class="inputs">
+                            <h3>Username</h3>
+                            <input id="changeUsername" value=<%= userData.username %>>
+                            <span id="username-error" class="error-message"></span>
+                        </div>
+                        <div class="inputs">
+                            <h3>Password</h3>
+                            <input id="changePassword" type="password">
+                            <span id="password-error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <button id="saveChanges">Save changes</button>
+                </div>
+                <div id="secondHalf">
+                    <img id="showcaseImage" src=<%= userData.profilePic %>><input type="url" id="url" placeholder="Paste the URL of the image">
+                </div>
             </div>
         </div>
    </div>
    <p id="username"><%= userData.username %></p>
-   <script src="/views/expenses.js"></script>
+   <script src="/views/settings.js"></script>
 </body>
 </html>

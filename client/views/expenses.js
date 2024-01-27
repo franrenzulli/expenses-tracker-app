@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const dashboard = document.getElementById("dashboard")
 const categories = document.getElementById("categories")
+const settings = document.getElementById("settings")
 const username = document.getElementById("username").textContent
 
 dashboard.addEventListener("click", async()=>{
@@ -19,3 +20,6 @@ categories.addEventListener("click", async()=>{
     window.location.href = "/categories?username=" + username;
 })
 
+settings.addEventListener("click", async()=>{
+    window.location.href = "/settings?username=" + username;
+})

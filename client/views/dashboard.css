@@ -58,13 +58,14 @@ body{
     font-size: 15px;
 }
 
-#general-extras a{
+#general-extras button, #general-extras a{
     margin: 10px 0;
     font-size: 20px;
     text-decoration: none;
 }
 
-#general-extras a:hover{
+#general-extras button:hover{
+    cursor: pointer;
     color: rgb(62, 139, 255);
     transition: 0.4s;
 }
@@ -81,7 +82,16 @@ body{
 }
 
 #categories, #expenses, #settings, #help{
+    background-color: #FCFCFC;
+    border: 0;
+    outline: 0;
+    font-weight: 600;
+    font-size: 20px;
     color: #474747;
+}
+
+#expenses{
+    margin-top: 10px;
 }
 
 /* Main section (middle) */
