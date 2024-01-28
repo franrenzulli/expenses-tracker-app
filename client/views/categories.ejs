@@ -45,6 +45,41 @@
             <div id="categoriesList">
                 <ul id="list"></ul>    
             </div>
+            <div id="addCategoryModal">
+                <div id="categoryDiv">
+                <label>New category name</label>
+                <input id="categoryName"  placeholder="Example: Education, Healthcare, Groceries...">
+                </div>
+                <div id="transactionDiv">
+                <label>Type of transaction</label>
+                <select id="categoriesSelect" name="categories">
+                    <option value="Expense">Expense</option>
+                    <option value="Income">Income</option>
+                </select>
+                </div>
+                <div id="colorDiv">
+                <label>Select a color:</label>
+                <select id="colors" name="colors">
+                    <option value="Red">Red</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Blue">Blue</option>
+                    <option value="lightBlue">Light Blue</option>
+                    <option value="green">Green</option>
+                    <option value="Purple">Purple</option>
+                </select>
+                </div>
+                <div>
+                    <button id="saveCategory">Save category</button>
+                </div>
+                <div>
+                    <button id="closeModal">Cancel</button>
+                </div>
+                
+            </div>
+            <div id="editCategoryModal">
+                
+            </div>
         </div>
    </div>
    <p id="username"><%= userData.username %></p>

@@ -163,10 +163,164 @@ body{
 }
 
 #categoriesList{
+    padding: 50px;
     width: 100%;
     height: 85vh;
+    box-sizing: border-box;
     display: flex; 
     flex-wrap: wrap;
+}
+
+#addCategoryModal{
+    width: 100%;
+    height: 85vh;
+    display: none; 
+    flex-direction: column;
+}
+
+#addCategoryModal div{
+    margin-left: 40px;
+    width: 40vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#addCategoryModal div input{
+    margin-top: 20px;
+    width: 20vw;
+    height: 5vh;
+    border: 0px;
+    border-bottom: 2px solid #474747;
+    text-indent: 10px;
+}
+
+#addCategoryModal div input:focus{
+    outline: 0px;
+    border-bottom: 2px solid rgba(13,153,255,0.7);
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+#colors, #categoriesSelect{
+    margin-top: 20px;
+}
+
+#categoryDiv, #transactionDiv, #colorDiv{
+    margin-top: 40px;
+}
+
+label{
+    font-size: 20px;
+}
+
+select{
+    width: 20vw;
+    outline: 2px solid #474747;
+    border-radius: 4px;
+    appearance: none; /* Remove default arrow in Firefox */
+    -webkit-appearance: none; /* Remove default arrow in Chrome and Safari */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    border: none; /* Remove default borders */
+    padding: 0.5rem; /* Add padding for better appearance */
+    background-color: transparent; /* Make background transparent */
+    font-size: 20px;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+#saveCategory, #closeModal{
+    width: 35vw;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+
+#saveCategory{
+    margin-top: 40px;
+    height: 6vh;
+    background-color: rgba(13,153,255,0.7);
+    border: 2px solid rgba(13,153,255,0.9);
+}
+
+#saveCategory:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(13,153,255,0.9);
+}
+
+#closeModal{
+    margin-top: 20px;
+    height: 6vh;
+    background-color: rgba(255,58,31,0.5);
+    border: 2px solid rgba(255,58,31,0.7);
+}
+
+#closeModal:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(255,58,31,0.7);
+}
+
+.card{
+    margin-right: 20px;
+    height: 12vw;
+    width: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    border-radius: 10px; 
+}
+
+.card button{
+    width: 70%;
+    height: 10%;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.card .editBtn{
+    margin-top: 20px;
+    background-color: rgba(13,153,255,0.7);
+    border: 2px solid rgba(13,153,255,0.9);
+}
+
+.card .deleteBtn{
+    margin-top: 10px;
+    background-color: rgba(255,58,31,0.5);
+    border: 2px solid rgba(255,58,31,0.7);
+}
+
+.card .editBtn:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(13,153,255,0.9);
+}
+
+.card .deleteBtn:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(255,58,31,0.7);
+}
+
+.card h3{
+    margin: 20px 0 0 0;
+}
+
+.card h2{
+    margin: 20px 0 0 0;
+    text-decoration: underline;
+}
+
+.card span{
+    margin: 20px 0 0 0;
 }
 
 /* Responsive Design & Media Queries */

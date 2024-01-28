@@ -81,7 +81,7 @@ const passwordChecker = (password)=>{
         return true
     }
 }
-
+ 
 // Function to check if the username meets the requirements
 const usernameChecker = (username)=>{
     if(username.length == 0){
