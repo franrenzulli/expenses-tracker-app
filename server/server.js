@@ -21,7 +21,8 @@ const checkUsernameAvailability = require("./helpers/checkUsernameAvailability.j
 const loginTrial = require("./helpers/loginTrial.js")
 const fetchUserData = require("./helpers/fetchUserData.js")
 const saveChanges = require("./helpers/saveChanges.js")
-
+const manageCategory = require("./helpers/manageCategory.js")
+const askCategories = require("./helpers/askCategories.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')))
@@ -130,6 +131,19 @@ app.post("/saveChanges", async(req,res)=>{
     saveChanges(usernameInput, passwordInput, firstNameInput, lastNameInput, urlInput, username)
     res.status(200).send({ok:true})
 })
+
+app.post("/categoryManager", async(req,res)=>{
+    const {username, categoryName, type, color, action} = req.body
+    manageCategory(username, categoryName, type, color, action)
+    res.status(200).send({ok:true})
+})
+
+app.post("/askCategories", async(req,res)=>{
+    const {username} = req.body
+    const categories = await askCategories(username)
+    res.json(categories)
+})
+
 
 // Start listening on the available port.
 app.listen(PORT, ()=>{
