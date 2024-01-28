@@ -25,7 +25,9 @@ const addToDatabase = async(username, password, firstName, lastName)=>{
             "profilePic":"https://t3.ftcdn.net/jpg/05/17/79/88/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg",
             "balance":0,
             "income":0,
-            "expenses":0
+            "expense":0,
+            "categories":[],
+            "expenses":[]
         })
 
         await client.close()
