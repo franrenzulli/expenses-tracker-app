@@ -23,6 +23,7 @@ const fetchUserData = require("./helpers/fetchUserData.js")
 const saveChanges = require("./helpers/saveChanges.js")
 const manageCategory = require("./helpers/manageCategory.js")
 const askCategories = require("./helpers/askCategories.js")
+const deleteCategory = require("./helpers/deleteCategory.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')))
@@ -75,7 +76,7 @@ app.post("/login", async(req,res)=>{
     const {username, password} = req.body
     console.log("Login Attempt:", username, password)
     if(await loginTrial(username, password)){
-        
+        // Generates token
         const token = jwt.sign({ username: username }, process.env.JWT_SECRET, {
             expiresIn: "1h", // Token will expire in 1 hour (adjust as needed)
         });
@@ -101,6 +102,7 @@ app.post("/getInfo", async(req,res)=>{
 
 })
 
+// Serve the /dashboard .ejs template
 app.get("/dashboard", async(req, res)=>{
     const username = req.query.username
     console.log("USERNAME PASSED:", username)
@@ -108,42 +110,54 @@ app.get("/dashboard", async(req, res)=>{
     res.status(200).render(path.join(__dirname, "../client/views/dashboard.ejs"), {userData})
 })
 
+// Serve the /dashboard/categories .ejs template
 app.get("/categories", async(req,res)=>{
     const username = req.query.username
     const userData = await fetchUserData(username)
     res.status(200).render(path.join(__dirname, "../client/views/categories.ejs"), {userData})
 })
 
+// Serve the /dashboard/expenses .ejs template
 app.get("/expenses", async(req, res)=>{
     const username = req.query.username
     const userData = await fetchUserData(username)
     res.status(200).render(path.join(__dirname, "../client/views/expenses.ejs"), {userData})
 })
 
+// Serve the /dashboard/settings .ejs template
 app.get("/settings", async(req,res)=>{
     const username = req.query.username
     const userData = await fetchUserData(username)
     res.status(200).render(path.join(__dirname, "../client/views/settings.ejs"), {userData})
 })
 
+// Handles the edit action of settings (personal data)
 app.post("/saveChanges", async(req,res)=>{
     const {usernameInput, passwordInput, firstNameInput, lastNameInput, urlInput, username} = req.body
     saveChanges(usernameInput, passwordInput, firstNameInput, lastNameInput, urlInput, username)
     res.status(200).send({ok:true})
 })
 
+// Handles the add or edit actions of categories
 app.post("/categoryManager", async(req,res)=>{
     const {username, categoryName, type, color, action} = req.body
     manageCategory(username, categoryName, type, color, action)
     res.status(200).send({ok:true})
 })
 
+// Handle the request of all categories of a user
 app.post("/askCategories", async(req,res)=>{
     const {username} = req.body
     const categories = await askCategories(username)
     res.json(categories)
 })
 
+// Handle the delete action of categories
+app.post("/deleteCategory", async(req,res)=>{
+    const {username, categoryh2} = req.body
+    deleteCategory(username, categoryh2)
+    res.status(200).send({ok:true})
+})
 
 // Start listening on the available port.
 app.listen(PORT, ()=>{
