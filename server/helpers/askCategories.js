@@ -13,17 +13,18 @@ const askCategories = async(username)=>{
         await client.connect()
         console.log("Connected to the database, from askCategories")    
         const database = await client.db("expense-tracker")
-
+        
+        // We collect all categories of the chosen user and return it
         const user = await database.collection("users").findOne({username:username})
         const categories = user.categories || []
 
         await client.close() 
-        console.log("Categories returned successfully, from askCategories.js")
+        console.log("Categories returned, askCategories.js")
 
         return categories
         
     }catch(err){
-        console.error("Error connecting to the database, from askCategories.js")
+        console.error("Error connecting to DB, askCategories.js")
     }
 }
 

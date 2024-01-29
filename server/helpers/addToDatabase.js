@@ -31,9 +31,9 @@ const addToDatabase = async(username, password, firstName, lastName)=>{
         })
 
         await client.close()
-        console.log("Connection closed, user added to the collection successfully, from addToDatabase")
+        console.log("Connection closed, user added to DB, addToDatabase")
     }catch(err){
-        console.error("Error connecting to the database, from addToDatabase")
+        console.error("Error connecting to DB, addToDatabase")
     }
 }
 

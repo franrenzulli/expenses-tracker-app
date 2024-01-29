@@ -29,8 +29,8 @@ const saveChanges = async(usernameInput, passwordInput, firstNameInput, lastName
                 {username:username},
                 {$set:{"username":usernameInput, "firstName":firstNameInput, "lastName":lastNameInput}}
             )
-
-        }else if(passwordInput.length > 0){ // Modify password
+        // Modify password
+        }else if(passwordInput.length > 0){ 
             const hashedPassword = await bcrypt.hash(passwordInput, 10)
             await database.collection("users").updateOne(
                 {username:username},
@@ -39,9 +39,9 @@ const saveChanges = async(usernameInput, passwordInput, firstNameInput, lastName
         }
 
         await client.close() 
-        console.log("User modified successfully, changes saved, from saveChanges")
+        console.log("User modified, saveChanges.js")
     }catch(err){
-        console.error("Error connecting to the database, from saveChanges")
+        console.error("Error connecting to DB, saveChanges.js")
     }
 }
 

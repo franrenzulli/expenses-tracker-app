@@ -14,6 +14,7 @@ const manageCategory = async(username, categoryName, type, color, action)=>{
         console.log("Connected to the database, from saveChanges")    
         const database = await client.db("expense-tracker")
 
+        // Adds a new category
         if(action == "add"){
             const newCategory = {
                 name:categoryName,
@@ -25,6 +26,9 @@ const manageCategory = async(username, categoryName, type, color, action)=>{
                 {username:username},
                 {$push: {categories:newCategory}}
             )
+            console.log("Category added, manageCategory.js")
+            
+        // Edits an existing category
         }else if(action == "edit"){
             await database.collection("users").updateOne(
                 {username:username, "categories.name":categoryName},
@@ -32,14 +36,11 @@ const manageCategory = async(username, categoryName, type, color, action)=>{
                     
                 }}
             )
-        }else if(action == "delete"){
-
+            console.log("Category edited, manageCategory.js")
         }
-
         await client.close() 
-        console.log("Category managed successfully, changes saved, from addCategory.js")
     }catch(err){
-        console.error("Error connecting to the database, from manageCategory.js")
+        console.error("Error connecting to DB, manageCategory.js")
     }
 }
 
