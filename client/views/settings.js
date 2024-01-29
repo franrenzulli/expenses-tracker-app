@@ -1,3 +1,4 @@
+// This function will check if you have an existing token to enter the website
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
 
@@ -21,6 +22,8 @@ const changeFirstName = document.getElementById("changeFirstName")
 const changeLastName = document.getElementById("changeLastName")
 const url = document.getElementById("url")
 
+// Here we will do the redirecting of the navigation bar
+
 dashboard.addEventListener("click", async()=>{
     window.location.href = "/dashboard?username=" + username;
 })
@@ -32,6 +35,8 @@ categories.addEventListener("click", async()=>{
 expenses.addEventListener("click", async()=>{
     window.location.href = "/expenses?username=" + username;
 })
+
+// Manage the saving changes process
 
 saveChangesBtn.addEventListener("click", async()=>{
     const usernameInput = changeUsername.value 

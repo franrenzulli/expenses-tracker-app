@@ -1,3 +1,4 @@
+// This function will check if you have an existing token to enter the website
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
 
@@ -6,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/login";
     }
 });
+
+// Here we will do the redirecting of the navigation bar
 
 const expenses = document.getElementById("expenses")
 const categories = document.getElementById("categories")

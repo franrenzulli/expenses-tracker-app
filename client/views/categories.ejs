@@ -39,12 +39,18 @@
             </div>
             <div id="buttons">
                 <button id="addCategory">Add category</button>
-                <button id="deleteCategory">Delete category</button>
-                <button id="editCategory">Edit category</button>
+     <!--           <button id="editCategory">Edit category</button> -->
             </div>
+            <!-- This modal will be displayed when there aren't any categories -->
+            <div id="emptyList">
+                <img src="/views/images/add.png">
+                <h1>Start adding categories to see them displayed here</h1>
+            </div>
+             <!-- This modal will be displayed when there are existing categories -->
             <div id="categoriesList">
                 <ul id="list"></ul>    
             </div>
+            <!-- This modal will be displayed when creating a category -->
             <div id="addCategoryModal">
                 <div id="categoryDiv">
                 <label>New category name</label>
@@ -75,10 +81,10 @@
                 <div>
                     <button id="closeModal">Cancel</button>
                 </div>
-                
             </div>
+            <!-- This modal will be displayed when editing a category -->
             <div id="editCategoryModal">
-                
+
             </div>
         </div>
    </div>

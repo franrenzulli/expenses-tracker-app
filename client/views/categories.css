@@ -120,7 +120,7 @@ body{
 
 #buttons button{
     margin-left: 20px;
-    width: 200px;
+    width: 400px;
     height: 100%;
     border-radius: 10px;
     font-size: 18px;
@@ -134,11 +134,6 @@ body{
         border: 3px solid rgba(20,174,92,0.7);
 }
 
-#deleteCategory{
-    background-color: rgba(255,58,31,0.5);
-    border: 3px solid rgba(255,58,31,0.7);
-}
-
 #editCategory{
     background-color: rgba(13,153,255,0.5);
     border: 3px solid rgba(13,153,255,0.7);
@@ -148,12 +143,6 @@ body{
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(20,184,92,1);
-}
-
-#deleteCategory:hover{
-    cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(255,58,31,1);
 }
 
 #editCategory:hover{
@@ -169,6 +158,23 @@ body{
     box-sizing: border-box;
     display: flex; 
     flex-wrap: wrap;
+}
+
+#emptyList{
+    padding: 50px;
+    width: 100%;
+    height: 85vh;
+    box-sizing: border-box;
+    display: none; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#emptyList img{
+    margin-right: 100px;
+    width: 15vw;
+    height: auto;
 }
 
 #addCategoryModal{
@@ -192,6 +198,7 @@ body{
     height: 5vh;
     border: 0px;
     border-bottom: 2px solid #474747;
+    background-color: #FCFCFC;
     text-indent: 10px;
 }
 
@@ -268,32 +275,42 @@ select:hover{
 
 .card{
     margin-right: 20px;
-    height: 12vw;
-    width: 20vh;
+    height: 30vh;
+    width: 20vw;
     display: flex;
     flex-direction: column;
     justify-content: baseline;
-    align-items: center;
+    border: 3px solid #dddddd;
     border-radius: 10px; 
 }
 
+.card #categoryButtons{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .card button{
-    width: 70%;
-    height: 10%;
+    width: 45%;
+    height: 60%;
     border-radius: 10px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
+    font-size: 20px;
     color: white;
 }
 
 .card .editBtn{
-    margin-top: 20px;
+    margin-right: 10px;
     background-color: rgba(13,153,255,0.7);
     border: 2px solid rgba(13,153,255,0.9);
 }
 
 .card .deleteBtn{
-    margin-top: 10px;
+    
     background-color: rgba(255,58,31,0.5);
     border: 2px solid rgba(255,58,31,0.7);
 }
@@ -311,16 +328,17 @@ select:hover{
 }
 
 .card h3{
-    margin: 20px 0 0 0;
+    margin: 20px 0 0 20px;
 }
 
 .card h2{
-    margin: 20px 0 0 0;
-    text-decoration: underline;
+    margin: 20px 0 0 20px;
 }
 
 .card span{
-    margin: 20px 0 0 0;
+    margin: 0 0 0 20px;
+    font-size: 15px;
+    color: #cccccc;
 }
 
 /* Responsive Design & Media Queries */

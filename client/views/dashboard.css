@@ -170,9 +170,23 @@ body{
     height: 55vh;
 }
 
+#emptyChart{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#emptyChart img{
+    width: 200px;
+    height: auto;
+}
+
 #categoriesDisplay{
-    width: 30%;
-    height: 100%;
+    width: 100%;
+    height: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
