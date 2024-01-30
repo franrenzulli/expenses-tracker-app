@@ -24,6 +24,7 @@ const saveChanges = require("./helpers/saveChanges.js")
 const manageCategory = require("./helpers/manageCategory.js")
 const askCategories = require("./helpers/askCategories.js")
 const deleteCategory = require("./helpers/deleteCategory.js")
+const editCategory = require("./helpers/editCategory.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')))
@@ -156,6 +157,12 @@ app.post("/askCategories", async(req,res)=>{
 app.post("/deleteCategory", async(req,res)=>{
     const {username, categoryh2} = req.body
     deleteCategory(username, categoryh2)
+    res.status(200).send({ok:true})
+})
+
+app.post("/editCategory", async(req,res)=>{
+    const {username, oldCategoryName, newCategoryName, newType, newColor} = req.body
+    editCategory(username, oldCategoryName, newCategoryName, newType, newColor)
     res.status(200).send({ok:true})
 })
 
