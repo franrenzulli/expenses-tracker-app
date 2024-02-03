@@ -124,7 +124,7 @@ body{
 
 #buttons button{
     margin-left: 20px;
-    width: 200px;
+    width: 21vw;
     height: 100%;
     border-radius: 10px;
     font-size: 18px;
@@ -138,32 +138,10 @@ body{
         border: 3px solid rgba(20,174,92,0.7);
 }
 
-#deleteTransaction{
-    background-color: rgba(255,58,31,0.5);
-    border: 3px solid rgba(255,58,31,0.7);
-}
-
-#editTransaction{
-    background-color: rgba(13,153,255,0.5);
-    border: 3px solid rgba(13,153,255,0.7);
-}
-
 #addTransaction:hover{
     cursor: pointer;
     transition: 0.5s;
     background-color: rgba(20,184,92,1);
-}
-
-#deleteTransaction:hover{
-    cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(255,58,31,1);
-}
-
-#editTransaction:hover{
-    cursor: pointer;
-    transition: 0.5s;
-    background-color: rgba(13,153,255,1);
 }
 
 #transactionList{
@@ -171,6 +149,199 @@ body{
     height: 85vh;
     display: flex; 
     flex-wrap: wrap;
+}
+
+#emptyList{
+    padding: 50px;
+    width: 100%;
+    height: 85vh;
+    box-sizing: border-box;
+    display: none; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#emptyList img{
+    margin-right: 100px;
+    width: 15vw;
+    height: auto;
+}
+
+#addTransactionModal{
+    width: 100%;
+    height: 85vh;
+    display: none; 
+    flex-direction: column;
+}
+
+#addTransactionModal div{
+    margin-left: 40px;
+    width: 40vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#addTransactionModal div input{
+    margin-top: 20px;
+    width: 20vw;
+    height: 5vh;
+    border: 0px;
+    border-bottom: 2px solid #474747;
+    background-color: #FCFCFC;
+    text-indent: 10px;
+}
+
+#addTransactionModal div input:focus{
+    outline: 0px;
+    border-bottom: 2px solid rgba(13,153,255,0.7);
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+label{
+    font-size: 20px;
+}
+
+select{
+    width: 20vw;
+    outline: 2px solid #474747;
+    border-radius: 4px;
+    appearance: none; /* Remove default arrow in Firefox */
+    -webkit-appearance: none; /* Remove default arrow in Chrome and Safari */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    border: none; /* Remove default borders */
+    padding: 0.5rem; /* Add padding for better appearance */
+    background-color: transparent; /* Make background transparent */
+    font-size: 20px;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+#categoriesSelect, #editCategoriesSelect{
+    margin-top: 20px;
+}
+
+#transactionName, #transactionCategory, #amount{
+    margin-top: 40px;
+}
+
+#saveTransaction, #closeAddModal{
+    width: 35vw;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+
+#saveTransaction{
+    margin-top: 40px;
+    height: 6vh;
+    background-color: rgba(13,153,255,0.7);
+    border: 2px solid rgba(13,153,255,0.9);
+}
+
+#saveTransaction:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(13,153,255,0.9);
+}
+
+#closeAddModal{
+    margin-top: 20px;
+    height: 6vh;
+    background-color: rgba(255,58,31,0.5);
+    border: 2px solid rgba(255,58,31,0.7);
+}
+
+#closeAddModal:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(255,58,31,0.7);
+}
+
+.transactionCard{
+    margin-top: 20px;
+    padding-left: 20px;
+    width: 40vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border: 2px solid #474747;
+    border-radius: 10px;
+}
+
+.transactionCard h2{
+    font-size: 20px;
+}
+
+.infoSection{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.transNam{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.transCat{
+    width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.buttons{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.transactionCard button{
+    width: 100px;
+    height: 80%;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.editBtn{
+    margin-right: 10px;
+    background-color: rgba(13,153,255,0.7);
+    border: 2px solid rgba(13,153,255,0.9);
+}
+
+.deleteBtn{
+    background-color: rgba(255,58,31,0.5);
+    border: 2px solid rgba(255,58,31,0.7);
+}
+
+.editBtn:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(13,153,255,0.9);
+}
+
+.deleteBtn:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(255,58,31,0.7);
 }
 
 /* Responsive Design & Media Queries */

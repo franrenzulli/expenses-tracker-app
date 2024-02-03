@@ -39,11 +39,35 @@
             </div>
             <div id="buttons">
                 <button id="addTransaction">Add transaction</button>
-                <button id="deleteTransaction">Delete transaction</button>
-                <button id="editTransaction">Edit transaction</button>
+            </div>
+            <div id="emptyList">
+                <img src="/views/images/add.png">
+                <h1>Start adding expenses to see them displayed here</h1>
             </div>
             <div id="transactionList">
                 <ul id="list"></ul>    
+            </div>
+            <div id="addTransactionModal">
+                <div id="transactionName">
+                    <label>New transaction name</label>
+                    <input id="transactionNamee"  placeholder="Example: Wendy's burger, KO Dividends, LEGO bricks...">
+                    </div>
+                    <div id="transactionCategory">
+                    <label>Transaction category</label>
+                    <select id="categoriesSelect" name="categories">
+                       <!-- Here the categories from the DB will be inserted -->
+                    </select>
+                    </div>
+                    <div id="amount">
+                    <label>Transaction amount</label>
+                        <input id="transactionAmount" placeholder="$"></input>
+                    </div>
+                    <div>
+                        <button id="saveTransaction">Save transaction</button>
+                    </div>
+                    <div>
+                        <button id="closeAddModal">Cancel</button>
+                    </div>
             </div>
         </div>
    </div>
