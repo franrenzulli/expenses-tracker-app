@@ -168,14 +168,14 @@ body{
     height: auto;
 }
 
-#addTransactionModal{
+#addTransactionModal, #editTransactionModal{
     width: 100%;
     height: 85vh;
     display: none; 
     flex-direction: column;
 }
 
-#addTransactionModal div{
+#addTransactionModal div, #editTransactionModal div{
     margin-left: 40px;
     width: 40vw;
     height: 10vh;
@@ -183,7 +183,7 @@ body{
     flex-direction: column;
 }
 
-#addTransactionModal div input{
+#addTransactionModal div input, #editTransactionModal div input{
     margin-top: 20px;
     width: 20vw;
     height: 5vh;
@@ -193,7 +193,7 @@ body{
     text-indent: 10px;
 }
 
-#addTransactionModal div input:focus{
+#addTransactionModal div input:focus, #editTransactionModal div input:focus{
     outline: 0px;
     border-bottom: 2px solid rgba(13,153,255,0.7);
     font-size: 20px;
@@ -229,7 +229,7 @@ select:hover{
     margin-top: 40px;
 }
 
-#saveTransaction, #closeAddModal{
+#saveTransaction, #closeAddModal, #closeEditModal, #editTransaction{
     width: 35vw;
     border-radius: 10px;
     font-family: 'Inter', sans-serif;
@@ -238,27 +238,27 @@ select:hover{
     color: white;
 }
 
-#saveTransaction{
+#saveTransaction, #editTransaction{
     margin-top: 40px;
     height: 6vh;
     background-color: rgba(13,153,255,0.7);
     border: 2px solid rgba(13,153,255,0.9);
 }
 
-#saveTransaction:hover{
+#saveTransaction:hover, #editTransaction:hover{
     cursor: pointer;
     transition: 0.3s;
     background-color: rgba(13,153,255,0.9);
 }
 
-#closeAddModal{
+#closeAddModal, #closeEditModal{
     margin-top: 20px;
     height: 6vh;
     background-color: rgba(255,58,31,0.5);
     border: 2px solid rgba(255,58,31,0.7);
 }
 
-#closeAddModal:hover{
+#closeAddModal:hover, #closeEditModal:hover{
     cursor: pointer;
     transition: 0.3s;
     background-color: rgba(255,58,31,0.7);
@@ -267,7 +267,7 @@ select:hover{
 .transactionCard{
     margin-top: 20px;
     padding-left: 20px;
-    width: 40vw;
+    width: 70vw;
     height: 5vh;
     display: flex;
     align-items: center;
@@ -281,7 +281,7 @@ select:hover{
 }
 
 .infoSection{
-    width: 70%;
+    width: 82%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -289,21 +289,21 @@ select:hover{
 }
 
 .transNam{
-    width: 250px;
+    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
 .transCat{
-    width: 150px;
+    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
 .buttons{
-    width: 30%;
+    width: 18%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -343,5 +343,6 @@ select:hover{
     transition: 0.3s;
     background-color: rgba(255,58,31,0.7);
 }
+
 
 /* Responsive Design & Media Queries */

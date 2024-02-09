@@ -51,27 +51,50 @@
                 <div id="transactionName">
                     <label>New transaction name</label>
                     <input id="transactionNamee"  placeholder="Example: Wendy's burger, KO Dividends, LEGO bricks...">
-                    </div>
-                    <div id="transactionCategory">
+                </div>
+                <div id="transactionCategory">
                     <label>Transaction category</label>
                     <select id="categoriesSelect" name="categories">
                        <!-- Here the categories from the DB will be inserted -->
                     </select>
-                    </div>
-                    <div id="amount">
+                </div>
+                <div id="amount">
                     <label>Transaction amount</label>
-                        <input id="transactionAmount" placeholder="$"></input>
-                    </div>
-                    <div>
-                        <button id="saveTransaction">Save transaction</button>
-                    </div>
-                    <div>
-                        <button id="closeAddModal">Cancel</button>
-                    </div>
+                    <input id="transactionAmount" placeholder="$"></input>
+                </div>
+                <div>
+                    <button id="saveTransaction">Save transaction</button>
+                </div>
+                <div>
+                    <button id="closeAddModal">Cancel</button>
+                </div>
+            </div>
+            <div id="editTransactionModal">
+                <div id="transactionName">
+                    <label>Edit transaction name</label>
+                    <input id="editTransactionNamee"  placeholder="Example: Wendy's burger, KO Dividends, LEGO bricks...">
+                </div>
+                <div id="transactionCategory">
+                    <label>Transaction category</label>
+                    <select id="editCategoriesSelect" name="categories">
+                       <!-- Here the categories from the DB will be inserted -->
+                    </select>
+                </div>
+                <div id="amount">
+                    <label>Transaction amount</label>
+                    <input id="editTransactionAmount" placeholder="$"></input>
+                </div>
+                <div>
+                    <button id="editTransaction">Edit transaction</button>
+                </div>
+                <div>
+                    <button id="closeEditModal">Cancel</button>
+                </div>
             </div>
         </div>
    </div>
    <p id="username"><%= userData.username %></p>
+   <p id="oldTransactionName"></p>
    <script src="/views/expenses.js"></script>
 </body>
 </html>
