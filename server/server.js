@@ -27,6 +27,8 @@ const deleteCategory = require("./helpers/deleteCategory.js")
 const editCategory = require("./helpers/editCategory.js")
 const addTransaction = require("./helpers/addTransaction.js")
 const askTransactions = require("./helpers/askTransactions.js")
+const deleteTransaction = require("./helpers/deleteTransaction.js")
+const editTransaction = require("./helpers/editTransaction.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')))
@@ -178,6 +180,18 @@ app.post("/askTransactions", async(req,res)=>{
     const {username} = req.body
     const transactions = await askTransactions(username)
     res.json(transactions)
+})
+
+app.post("/deleteTransaction", async(req,res)=>{
+    const {username, transactionh2, categoryName, transactionAmount} = req.body
+    deleteTransaction(username, transactionh2, categoryName, transactionAmount)
+    res.status(200).send({ok:true})
+})
+
+app.post("/editTransaction", async(req,res)=>{
+    const {username, oldTransactionName, newTransactionName, categoryName, transactionAmount} = req.body
+    editTransaction(username, oldTransactionName, newTransactionName, categoryName, transactionAmount)
+    res.status(200).send({ok:true})
 })
 
 // Start listening on the available port.
