@@ -4,7 +4,7 @@ const createClient = require("./createClient.js");
 require("dotenv").config();
 const uri = process.env.MONGODB_URI;
 
-const editCategory = async (username, oldCategoryName, newCategoryName, newType, newColor) => {
+const editCategory = async(username, oldCategoryName, newCategoryName, newType, newColor) => {
     try {
         const client = createClient(uri);
         await client.connect();
@@ -17,6 +17,7 @@ const editCategory = async (username, oldCategoryName, newCategoryName, newType,
         const user = await usersCollection.findOne({ username: username });
 
         if (user) {
+            
             // Find the category to edit
             const categoryIndex = user.categories.findIndex(category => category.name === oldCategoryName);
 
@@ -33,6 +34,33 @@ const editCategory = async (username, oldCategoryName, newCategoryName, newType,
                 );
 
                 console.log("Category edited, editCategory");
+
+                // Edit the category name of all transactions with the old category name
+
+                const filteredTransactions = user.expenses.filter(transaction => transaction.category == oldCategoryName )
+
+                for (const transaction of filteredTransactions){
+
+                    const editedTransaction = {
+                        name:transaction.name,
+                        category:newCategoryName,
+                        amount:transaction.amount
+                    }
+
+                    // We delete the old transactions
+
+                    await usersCollection.updateOne(
+                       { username: username },
+                        { $pull: { expenses: { name: transaction.name } } }
+                    );
+
+                    // We add the edited transaction
+
+                    await usersCollection.updateOne(
+                        { username: username },
+                        { $push: { expenses: editedTransaction } }
+                    );        
+                }        
             } else {
                 console.log("Category not found, editCategory");
             }
@@ -42,7 +70,7 @@ const editCategory = async (username, oldCategoryName, newCategoryName, newType,
         await client.close();
         console.log("Connection to DB closed, editCategory");
     } catch (err) {
-        console.error("Error connecting to DB, editCategory");
+        console.error("Error connecting to DB, editCategory", err);
     }
 };
 

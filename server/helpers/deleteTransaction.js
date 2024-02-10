@@ -50,7 +50,7 @@ const deleteTransaction = async(username, transactionName, categoryName, transac
         console.log("Transaction deleted, deleteTransaction.js")
         
     }catch(err){
-        console.error("Error connecting to DB, deleteTransaction.js")
+        console.error("Error connecting to DB, deleteTransaction.js", err)
     }
 }
 
