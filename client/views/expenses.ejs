@@ -60,7 +60,7 @@
                 </div>
                 <div id="amount">
                     <label>Transaction amount</label>
-                    <input id="transactionAmount" placeholder="$"></input>
+                    <input id="transactionAmount" placeholder="$" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></input>
                 </div>
                 <div>
                     <button id="saveTransaction">Save transaction</button>
@@ -82,7 +82,7 @@
                 </div>
                 <div id="amount">
                     <label>Transaction amount</label>
-                    <input id="editTransactionAmount" placeholder="$"></input>
+                    <input id="editTransactionAmount" placeholder="$" oninput="this.value = this.value.replace(/[^0-9]/g, '');"></input>
                 </div>
                 <div>
                     <button id="editTransaction">Edit transaction</button>

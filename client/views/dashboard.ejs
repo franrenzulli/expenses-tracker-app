@@ -60,17 +60,13 @@
                     <!-- Here we insert the chart displaying the expenses-categories information -->
                     <div id="emptyChart">
                         <img src="/views/images/add.png">
-                        <h1>Start adding expenses to see the chart</h1>
+                        <h1>Start adding transactions to see the chart</h1>
                     </div>
                     <div id="chartDisplay">
-
+                        <canvas id="grafica"></canvas>
                     </div>
                 </div>
-                <div id="operations">
-                    <button id="deposit">Deposit</button>                    
-                    <button id="withdraw">Withdraw</button>
-                    <button id="addExpense">Add Expense</button>
-                </div>
+                
             </div>
         </div>
         <!-- Here we display the latest expenses, extracting data from DB -->
@@ -78,9 +74,15 @@
             <div id="transactionsHeader">
                 <h3>Latest Expenses & Transactions</h3>
             </div>
+            <div id="transactionContent"></div>
+        </div>
+        <div id="emptyTransactions">
+            <p>You will see your latest transactions here</p>
+            <img src="https://cdn1.iconfinder.com/data/icons/finance-290/2500/Credit_card_transaction___Credit_card_Transactions_Payment_Finance_Banking-512.png">
         </div>
    </div>
    <p id="username"><%= userData.username %></p>
    <script src="/views/dashboard.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

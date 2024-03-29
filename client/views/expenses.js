@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", async() => {
         const categories = await responseCategories.json()
 
            // If there isn't any category in the database, display this
-      /*     if(categories.length == 0){
+          if(categories.length == 0){
             transactionList.style.display = "none"
             emptyList.style.display = "flex"
         }else if(categories.length > 0){ // If there are categories in the database
             transactionList.style.display = "flex"
             emptyList.style.display = "none"
         }
-*/
+
         // Load the categories in the <select> of the forms
         categories.forEach(category => {
             const option = `<option>${category.name}</option>`
@@ -140,23 +140,6 @@ document.addEventListener("DOMContentLoaded", async() => {
             })
         })
 
-     /*   const fetchDeleteTransaction = async(transactionh2)=>{
-            try{
-                const response = fetch("http://localhost:3000/deleteTransaction", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        transactionh2, username
-                    }),
-                });
-            }catch(err){
-                console.error(err)
-            }
-        } */
-
-
 });
 
 const dashboard = document.getElementById("dashboard")
@@ -210,7 +193,8 @@ saveTransaction.addEventListener("click", async()=>{
     const transactionName = document.getElementById("transactionNamee").value
     const categoryName = document.getElementById("categoriesSelect").value
     const transactionAmount = document.getElementById("transactionAmount").value
-
+    
+    if(transactionAmount !== ""){
      // Send POST request to /addTransaction
      const response = await fetch("http://localhost:3000/addTransaction", {
         method: "POST",
@@ -221,20 +205,22 @@ saveTransaction.addEventListener("click", async()=>{
             username, transactionName, categoryName, transactionAmount
         }),
     });
-
     window.location.href = "/expenses?username=" + username
+    }
+    
 })
 
 const editTransaction = document.getElementById("editTransaction")
 
 editTransaction.addEventListener("click", async()=>{
-
+    
     const newTransactionName = document.getElementById("editTransactionNamee").value
     const categoryName = document.getElementById("editCategoriesSelect").value
     const transactionAmountString = document.getElementById("editTransactionAmount").value;
     const transactionAmount = parseFloat(transactionAmountString.replace(/\$/g, ''));
     const oldTransactionName = document.getElementById("oldTransactionName").value
 
+    if(transactionAmountString !== ""){
      // Send POST request to /addTransaction
      const response = await fetch("http://localhost:3000/editTransaction", {
         method: "POST",
@@ -247,4 +233,5 @@ editTransaction.addEventListener("click", async()=>{
     });
 
     window.location.href = "/expenses?username=" + username
+    }
 })

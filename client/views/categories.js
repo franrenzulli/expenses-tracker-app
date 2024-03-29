@@ -69,10 +69,12 @@ document.addEventListener("DOMContentLoaded", async() => {
             const div = this.parentNode
             const card = div.parentNode
             const categoryh2 = card.querySelector("h2").textContent
-            fetchDeleteCategory(categoryh2)
+            const type = card.querySelector("h3").textContent
+            fetchDeleteCategory(categoryh2, type)
             card.remove()
         })
     })
+
 
     const editBtn = document.querySelectorAll(".editBtn")
     const editCategoryModal = document.getElementById("editCategoryModal")
@@ -93,13 +95,14 @@ document.addEventListener("DOMContentLoaded", async() => {
             editCategoryName.value = card.querySelector("h2").textContent
             editCategoriesSelect.value = card.querySelector("h3").textContent
             editColors.value = card.querySelector("h4").textContent
+            const oldType = editCategoriesSelect.value
 
             editCategory.addEventListener("click", async()=>{
                 const newCategoryName = editCategoryName.value
                 const newType = editCategoriesSelect.value
                 const newColor = editColors.value
 
-                fetchEditCategory(username, oldCategoryName, newCategoryName, newType, newColor)
+                fetchEditCategory(username, oldCategoryName, newCategoryName, oldType, newType, newColor)
                 window.location.href = "/categories?username=" + username
             })
 
@@ -111,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     })
 
     // We put this function separate because the eventListener can't be asynchronous since it wouldn't have access to .this property
-    const fetchDeleteCategory = async(categoryh2)=>{
+    const fetchDeleteCategory = async(categoryh2, type)=>{
         try{
             const response = fetch("http://localhost:3000/deleteCategory", {
                 method: "POST",
@@ -119,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    categoryh2, username
+                    categoryh2, username, type
                 }),
             });
         }catch(err){
@@ -129,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     // We put this function separate because the eventListener can't be asynchronous since it wouldn't have access to .this property
 
-    const fetchEditCategory = async(username, oldCategoryName, newCategoryName, newType, newColor)=>{
+    const fetchEditCategory = async(username, oldCategoryName, newCategoryName, oldType, newType, newColor)=>{
         try{
             const response = fetch("http://localhost:3000/editCategory", {
                 method: "POST",
@@ -137,7 +140,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    username, oldCategoryName, newCategoryName, newType, newColor
+                    username, oldCategoryName, newCategoryName, oldType, newType, newColor
                 }),
             });
         }catch(err){
