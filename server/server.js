@@ -29,6 +29,7 @@ const addTransaction = require("./helpers/addTransaction.js")
 const askTransactions = require("./helpers/askTransactions.js")
 const deleteTransaction = require("./helpers/deleteTransaction.js")
 const editTransaction = require("./helpers/editTransaction.js")
+const getChartData = require("./helpers/getChartData.js")
 
 // Allows to serve static files 
 app.use(express.static(path.join(__dirname, '../client')))
@@ -159,14 +160,14 @@ app.post("/askCategories", async(req,res)=>{
 
 // Handle the delete action of categories
 app.post("/deleteCategory", async(req,res)=>{
-    const {username, categoryh2} = req.body
-    deleteCategory(username, categoryh2)
+    const {username, categoryh2, type} = req.body
+    deleteCategory(username, categoryh2, type)
     res.status(200).send({ok:true})
 })
 
 app.post("/editCategory", async(req,res)=>{
-    const {username, oldCategoryName, newCategoryName, newType, newColor} = req.body
-    editCategory(username, oldCategoryName, newCategoryName, newType, newColor)
+    const {username, oldCategoryName, newCategoryName, oldType, newType, newColor} = req.body
+    editCategory(username, oldCategoryName, newCategoryName, oldType, newType, newColor)
     res.status(200).send({ok:true})
 })
 
@@ -192,6 +193,12 @@ app.post("/editTransaction", async(req,res)=>{
     const {username, oldTransactionName, newTransactionName, categoryName, transactionAmount} = req.body
     editTransaction(username, oldTransactionName, newTransactionName, categoryName, transactionAmount)
     res.status(200).send({ok:true})
+})
+
+app.post("/getChartData", async(req,res)=>{
+    const {username} = req.body
+    const chartData = getChartData(username);
+    res.status(200).json(chartData);
 })
 
 // Start listening on the available port.
