@@ -4,7 +4,7 @@ const createClient = require("./createClient.js");
 require("dotenv").config();
 const uri = process.env.MONGODB_URI;
 
-const editCategory = async(username, oldCategoryName, newCategoryName, newType, newColor) => {
+const editCategory = async(username, oldCategoryName, newCategoryName, oldType, newType, newColor) => {
     try {
         const client = createClient(uri);
         await client.connect();
@@ -44,13 +44,14 @@ const editCategory = async(username, oldCategoryName, newCategoryName, newType, 
                     const editedTransaction = {
                         name:transaction.name,
                         category:newCategoryName,
-                        amount:transaction.amount
+                        amount:transaction.amount,
+                        color:newColor
                     }
 
                     // We delete the old transactions
 
                     await usersCollection.updateOne(
-                       { username: username },
+                        { username: username },
                         { $pull: { expenses: { name: transaction.name } } }
                     );
 
@@ -59,7 +60,30 @@ const editCategory = async(username, oldCategoryName, newCategoryName, newType, 
                     await usersCollection.updateOne(
                         { username: username },
                         { $push: { expenses: editedTransaction } }
-                    );        
+                    );      
+                    
+                    // We edit the income/expense numbers
+                    if(oldType == "Income" && newType == "Expense"){ // Pass the money from Income to Expense
+
+                        await usersCollection.updateOne(
+                            { username: username },
+                            { $inc: { expense: +transaction.amount, income: -transaction.amount } }
+                        );
+
+                    }else if(oldType == "Expense" && newType == "Income"){ // Pass the money from Expense to Income
+
+                        await usersCollection.updateOne(
+                            { username: username },
+                            { $inc: { expense: -transaction.amount, income: +transaction.amount } }
+                        );
+
+                    }
+                    // Update balance
+                    await database.collection("users").updateOne(
+                        { username: username },
+                        { $set: { balance: (await database.collection("users").findOne({ username: username })).income - (await database.collection("users").findOne({ username: username })).expense } }
+                    );
+
                 }        
             } else {
                 console.log("Category not found, editCategory");

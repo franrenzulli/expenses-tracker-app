@@ -14,28 +14,28 @@ const addTransaction = async(username, transactionName, categoryName, transactio
         await client.connect()
         console.log("Connected to the database, from addTransaction")    
         const database = await client.db("expense-tracker")
-
-        // Adds a new transaction
-       
-            const newTransaction = {
-                name:transactionName,
-                category:categoryName,
-                amount:transactionAmount,
-            }
-    
-            await database.collection("users").updateOne(
-                {username:username},
-                {$push: {expenses:newTransaction}}
-            )
-            console.log("Category added, manageCategory.js")
-            
-        // Update the income/expense data
-
-        const user = await database.collection("users").findOne({username:username})
+        const user =await database.collection("users").findOne({username: username})
+        
         const categoryFound = user.categories.filter(category => category.name == categoryName )
         const categoryType = categoryFound[0].type
         const transactionAmountInt = parseInt(transactionAmount)
+        const categoryColor = categoryFound[0].color
 
+        const newTransaction = {
+            name:transactionName,
+            category:categoryName,
+            amount:transactionAmount,
+            color:categoryColor,
+        }
+
+        // Adds a new transaction
+        await database.collection("users").updateOne(
+            {username:username},
+            {$push: {expenses:newTransaction}}
+        )
+        console.log("Category added, manageCategory.js")
+
+        // Update the income/expense data
         if(categoryType == "Income"){
             await database.collection("users").updateOne(
                 {username: username},

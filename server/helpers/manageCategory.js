@@ -29,14 +29,6 @@ const manageCategory = async(username, categoryName, type, color, action)=>{
             console.log("Category added, manageCategory.js")
             
         // Edits an existing category
-        }else if(action == "edit"){
-            await database.collection("users").updateOne(
-                {username:username, "categories.name":categoryName},
-                {$set: {
-                    
-                }}
-            )
-            console.log("Category edited, manageCategory.js")
         }
         await client.close() 
     }catch(err){

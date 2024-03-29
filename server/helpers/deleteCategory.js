@@ -6,7 +6,7 @@ require("dotenv").config()
 const uri = process.env.MONGODB_URI
 const bcrypt = require("bcrypt")
 
-const deleteCategory = async(username, categoryName)=>{
+const deleteCategory = async(username, categoryName, type)=>{
 
     try{
         const client = createClient(uri)
@@ -22,6 +22,41 @@ const deleteCategory = async(username, categoryName)=>{
         }else{
             console.log("User not found, deleteCategory.js")
         }
+
+        // Delete all transactions of the deleted category
+
+        const filteredTransactions = user.expenses.filter(transaction => transaction.category == categoryName )
+
+        for (const transaction of filteredTransactions){
+
+            await database.collection("users").updateOne(
+                {username: username},
+                {$pull: { expenses: { name: transaction.name}}}
+            )
+
+            // Delete money from the income/balance
+            if(type == "Expense"){
+
+                await database.collection("users").updateOne(
+                    { username: username },
+                    { $inc: { expense: -transaction.amount } }
+                );
+
+            }else if(type == "Income"){
+
+                await database.collection("users").updateOne(
+                    { username: username },
+                    { $inc: { income: -transaction.amount } }
+                );
+
+            }
+        }
+
+        // Update balance
+        await database.collection("users").updateOne(
+            { username: username },
+            { $set: { balance: (await database.collection("users").findOne({ username: username })).income - (await database.collection("users").findOne({ username: username })).expense } }
+        );
 
         await client.close() 
         console.log("Category deleted, deleteCategory.js")
