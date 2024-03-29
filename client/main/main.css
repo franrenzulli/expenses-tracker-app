@@ -55,7 +55,7 @@ body{
 }
 
 #secondHalf{
-    padding-top: 10vh;
+    padding-top: 5vh;
     width: 50%;
     height: 100%;
     display: flex;
@@ -76,6 +76,7 @@ body{
     border: 3px solid rgba(13,153,255,0.7);
     border-radius: 20px;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
     font-weight: 600;
     font-size: 20px;
     color: white;
@@ -86,4 +87,11 @@ body{
     transition: 0.3s;
     background-color: rgba(13,153,255,0.7);
     border: 3px solid rgba(13,153,255,0.5);
+}
+
+#showcaseImg{
+    margin-top: 60px;
+    width: 40vw;
+    height: auto;
+    border: 2px solid gray;
 }
